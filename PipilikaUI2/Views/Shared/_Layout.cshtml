@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.min.js" integrity="sha512-LUnuMxdEEVUnBIqjMCK1ThLrAOYNkUG6gOvFZ9NCDfa978Zr0Pt2RTjiLGijeaqduyEjmSBmieln6mevHAk8OQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>@ViewData["Title"] - PiplikaTaskUI</title>
+    <style>
+        span {
+            color: red;
+        }
+
+        body {
+            padding-top: 20px;
+        }
+
+        .container {
+            max-width: 100%;
+        }
+
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+  
+    <script src="~/libs/jquery/jquery.js"></script>
+
+    <link href="~/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
+  
+    <link href="~/libs/fontawsome/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="~/libs/icons/font/bootstrap-icons.css" rel="stylesheet" />
+
+    
+
+</head>
+<body ng-app="myApp">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PiplikaTaskUI2</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Employees</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Department" asp-action="Index">Department</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">DeptNg</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EmpJs" asp-action="Index">EmpNg</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="DepartmentOfficePattern" asp-action="Index">DepartmentOfficePattern</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="EmployeeOfficePattern" asp-action="Index">EmployeeOfficePattern</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container text-center">
+            &copy; 2023 - PiplikaTaskUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+   
+   
+    <environment include="Development">
+        @await RenderSectionAsync("scripts", false)
+    </environment>
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿function createEmployee() {
+
+    alert("hi");
+}

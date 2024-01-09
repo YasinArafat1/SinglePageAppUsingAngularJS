@@ -1,0 +1,241 @@
+﻿@using PipilikaUI2.Models.Domain;
+@model PipilikaUI2.Models.Domain.Department
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<form id="employeeForm">
+    <div class="row mb-2">
+        <label class="col-form-label col-3">Department Name<span>*</span></label>
+        <div class="col-8">
+            <input asp-for="DepartmentName" class="form-control" id="txt1">
+        </div>
+        <div class="col-2">
+            <span asp-validation-for="DepartmentName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <label class="col-form-label col-3">Short Name<span>*</span></label>
+        <div class="col-8">
+            <input asp-for="ShortName" class="form-control" id="txt2">
+        </div>
+        <div class="col-2">
+            <span asp-validation-for="ShortName" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div>
+        <button type="button" class="btn btn-primary" id="btnCreateEmp" onclick="createEmployee()">Create</button>
+        <button type="button" class="btn btn-secondary" id="btnUpdateEmp" disabled>Update</button>
+    </div>
+</form>
+
+<br />
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+
+            <table class="table table-bordered  table-striped table-sm  table-responsive">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Department Name</th>
+                        <th>Short Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmpBody">
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+        var product;
+        var empId = '';
+        $(document).ready(function () {
+            getProducts();
+            $("#btnUpdateEmp").click(function () {
+                if (empId != '') {
+                    updateEmployee(empId);
+                }
+
+
+            });
+        });
+
+        // Create portion
+        // Create portion
+        function createEmployee() {
+            var formData = $('#employeeForm').serializeArray();
+            var formDataObject = {};
+
+            formData.forEach(function (field) {
+                formDataObject[field.name] = field.value;
+            });
+
+            $.ajax({
+                url: 'https://localhost:7133/api/Departments',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(formDataObject),
+                dataType: 'json',
+                success: function (result) {
+                    clearForm();
+                    getProducts();
+                },
+                error: function (msg) {
+                    alert(msg);
+                }
+            });
+        }
+
+
+
+
+        // Get portion
+
+        function renderProducts(productsToRender) {
+            $("#tblEmpBody").empty();
+            $.each(productsToRender, function (i, v) {
+                var serialNo = i + 1;
+                $("#tblEmpBody").append(
+                    "<tr>" +
+                    "<td class='text-center'>" + serialNo + "</td>" +
+                    "<td>" + v.departmentName + "</td>" +
+                    "<td>" + v.shortName + "</td>" +
+                    "<td>" +
+                    "<button class='btn btn-primary btnEditEmp' data-id='" + v.departmentId + "'><i class='bi bi-pencil'></i></button>" +
+                    "&nbsp;<button class='btn btn-danger' onclick='deleteEmployee(\"" + v.departmentId + "\")'><i class='bi bi-trash'></i></button>" +
+                    "</td>" +
+                    "</tr>"
+                );
+            });
+
+            // Attach click event for Edit buttons
+            $(".btnEditEmp").on("click", function () {
+                var departmentId = $(this).data("id");
+                editEmployee(departmentId);
+            });
+        }
+
+        function getProducts() {
+            var urlApi = "https://localhost:7133/api/Departments";
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                dataType: "JSON",
+                cache: false,
+            })
+                .done(function (result, request) {
+                    product = result;
+                    console.log(result);
+                    renderProducts(result);
+                });
+        }
+
+        // Edit portion
+        function editEmployee(id) {
+            console.log('Edit button clicked for employee ID:', id);
+            $.ajax({
+                url: 'https://localhost:7133/api/Departments/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    console.log('Edit Success:', result);
+
+                    if (result) {
+                        empId = result.departmentId;
+                        $("#txt1").val(result.departmentName);
+                        $("#txt2").val(result.shortName);
+                       
+                    }
+                    $("#btnCreateEmp").prop('disabled', true);
+                    $("#btnUpdateEmp").prop('disabled', false);
+
+
+                },
+                error: function (xhr, status, error) {
+                    console.error('Edit Error:', xhr.responseText);
+                    alert('Error fetching employee details: ' + xhr.responseText);
+                }
+            });
+        }
+
+
+
+        function updateEmployee(id) {
+            var formData = $('#employeeForm').serialize();
+
+            formData = JSON.parse('{"' + formData.replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+           
+
+            $.ajax({
+                url: 'https://localhost:7133/api/Departments/' + id,
+                contentType: 'application/json',
+                type: 'PUT',
+                data: JSON.stringify(formData),
+                dataType: 'json',
+                success: function (result) {
+                    clearForm();
+                    getProducts();
+                    $("#btnCreateEmp").prop('disabled', false);
+                    $("#btnUpdateEmp").prop('disabled', true);
+                },
+                error: function (msg) {
+                    alert(msg);
+                }
+            });
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        // Delete portion
+        function deleteEmployee(id) {
+            $.ajax({
+                url: 'https://localhost:7133/api/Departments/' + id,
+                contentType: 'application/json',
+                type: 'DELETE',
+                success: function (result) {
+                    clearForm();
+                    getProducts();
+                    alert("Are you Sure you want to Delete this Employee?");
+                },
+                error: function (msg) {
+                    alert(msg);
+                }
+            });
+        }
+
+        // Clear form fields
+        function clearForm() {
+            $('#txt1').val('');
+            $('#txt2').val('');
+           
+        }
+    </script>
+}
+
+
+

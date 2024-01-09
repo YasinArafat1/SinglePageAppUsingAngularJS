@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/libs/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/libs/icons/font/bootstrap-icons.css" />
+        <script src="~/libs/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="~/libs/jquery/jquery.js"></script>
+        <style>
+            body {
+                padding-top: 70px;
+            }
+        </style>
+        @await RenderSectionAsync("styles", false)
+
+    </environment>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

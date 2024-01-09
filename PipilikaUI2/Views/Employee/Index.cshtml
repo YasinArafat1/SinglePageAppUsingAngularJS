@@ -1,0 +1,521 @@
+﻿@using PipilikaUI2.Models.Domain;
+@model PipilikaUI2.Models.Domain.Employee
+
+
+<form id="employeeForm">
+    <div class="row p-3">
+
+        <div class="col-6">
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Employee Id<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="EmployeeId" class="form-control" id="txt0" disabled>
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Employee Name<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="EmployeeName" class="form-control" id="txt1">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Father Name<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="FatherName" class="form-control" id="txt2">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="FatherName" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Mother Name<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="MotherName" class="form-control" id="txt3">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="MotherName" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">User Name<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="Username" class="form-control" id="txt4">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Email<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="Email" class="form-control" id="txt5">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+           
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Mobile NO<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="MobileNo" class="form-control" id="txt6">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="MobileNo" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">DateOfBirth<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="DateOfBirth" class="form-control" type="date" id="txt7">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Gender<span>*</span></label>
+                <div class="col-8">
+                    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control" id="txt8">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Blood Group<span>*</span></label>
+                <div class="col-8">
+                    <select asp-for="BloodGroup" asp-items="Html.GetEnumSelectList<BloodGroup>()" class="form-control" id="txt9">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="BloodGroup" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">User Status<span>*</span></label>
+                <div class="col-8">
+                    <select asp-for="UserStatus" asp-items="Html.GetEnumSelectList<UserStatus>()" class="form-control" id="txt10">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="UserStatus" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <label class="col-form-label col-3">Education<span>*</span></label>
+                <div class="col-8">
+                    <input asp-for="Education" class="form-control" id="txt11">
+                </div>
+                <div class="col-2">
+                    <span asp-validation-for="Education" class="text-danger"></span>
+                </div>
+            </div>
+
+
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" id="btnCreateEmp" onclick="createEmployee()">Save</button>
+            @* <button type="button" class="btn btn-secondary" id="btnUpdateEmp" disabled>Update</button> *@
+        </div>
+
+
+
+    </div>
+
+
+</form>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+
+            <table class="table table-bordered  table-striped table-sm  table-responsive">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Employee Name</th>
+                        <th>Father Name</th>
+                        <th>Mother Name</th>
+                        <th>User Name</th>
+                        <th>Email Name</th>
+                        <th>Mobile No</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>BoloodGroup</th>
+                        <th>User Status</th>
+                        <th>Education</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmpBody">
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        var empId2 = $("#txt0").val();
+
+        var product;
+        var empId = '';
+        $(document).ready(function () {
+            getProducts();
+            $("#btnEditEmp").click(function () {
+                if (empId != '') {
+                    createEmployee(empId);
+                }
+
+
+            });
+        });
+
+
+
+        if (empId != 0) {
+
+            function updateEmployee(id) {
+            var formData = $('#employeeForm').serialize();
+
+            formData = JSON.parse('{"' + formData.replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+            formData.DateOfBirth = new Date(formData.DateOfBirth);
+            formData.Gender = parseInt(formData.Gender);
+            formData.BloodGroup = parseInt(formData.BloodGroup);
+            formData.UserStatus = parseInt(formData.UserStatus);
+
+            $.ajax({
+                url: 'https://localhost:7133/api/Employees/' + id,
+                contentType: 'application/json',
+                type: 'PUT',
+                data: JSON.stringify(formData),
+                dataType: 'json',
+                success: function (result) {
+                    clearForm();
+                    getProducts();
+                    $("#btnCreateEmp").prop('disabled', false);
+                    $("#btnUpdateEmp").prop('disabled', true);
+                },
+                error: function (msg) {
+                    alert(msg);
+                }
+            });
+
+        }
+
+            // function createEmployee(id) {
+            //     var formData = $('#employeeForm').serializeArray();
+            //     var formDataObject = {};
+
+            //     formData.forEach(function (field) {
+            //         formDataObject[field.name] = field.value;
+            //     });
+
+            //     // Convert relevant fields
+            //     formDataObject.DateOfBirth = new Date(formDataObject.DateOfBirth);
+            //     formDataObject.Gender = parseInt(formDataObject.Gender);
+            //     formDataObject.BloodGroup = parseInt(formDataObject.BloodGroup);
+            //     formDataObject.UserStatus = parseInt(formDataObject.UserStatus);
+
+            //     $.ajax({
+            //         url: 'https://localhost:7133/api/Employees/' + id,
+            //         contentType: 'application/json',
+            //         type: 'PUT',
+            //         data: JSON.stringify(formDataObject),
+            //         dataType: 'json',
+            //         success: function (result) {
+            //             clearForm();
+            //             getProducts();
+            //         },
+            //         error: function (msg) {
+            //             alert(msg);
+            //         }
+            //     });
+            // }
+
+        }
+        else
+        {
+            function createEmployee() {
+                var formData = $('#employeeForm').serializeArray();
+                var formDataObject = {};
+
+                formData.forEach(function (field) {
+                    formDataObject[field.name] = field.value;
+                });
+
+                // Convert relevant fields
+                formDataObject.DateOfBirth = new Date(formDataObject.DateOfBirth);
+                formDataObject.Gender = parseInt(formDataObject.Gender);
+                formDataObject.BloodGroup = parseInt(formDataObject.BloodGroup);
+                formDataObject.UserStatus = parseInt(formDataObject.UserStatus);
+
+                $.ajax({
+                    url: 'https://localhost:7133/api/Employees',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(formDataObject),
+                    dataType: 'json',
+                    success: function (result) {
+                        clearForm();
+                        getProducts();
+                    },
+                    error: function (msg) {
+                        alert(msg);
+                    }
+                });
+            }
+        
+        
+        }
+
+
+
+        // Create portion final
+        // function createEmployee() {
+        //     var formData = $('#employeeForm').serializeArray();
+        //     var formDataObject = {};
+
+        //     formData.forEach(function (field) {
+        //         formDataObject[field.name] = field.value;
+        //     });
+
+        //     // Convert relevant fields
+        //     formDataObject.DateOfBirth = new Date(formDataObject.DateOfBirth);
+        //     formDataObject.Gender = parseInt(formDataObject.Gender);
+        //     formDataObject.BloodGroup = parseInt(formDataObject.BloodGroup);
+        //     formDataObject.UserStatus = parseInt(formDataObject.UserStatus);
+
+        //     $.ajax({
+        //         url: 'https://localhost:7133/api/Employees',
+        //         contentType: 'application/json',
+        //         type: 'POST',
+        //         data: JSON.stringify(formDataObject),
+        //         dataType: 'json',
+        //         success: function (result) {
+        //             clearForm();
+        //             getProducts();
+        //         },
+        //         error: function (msg) {
+        //             alert(msg);
+        //         }
+        //     });
+        // }
+
+
+
+      
+
+
+
+
+        // Get portion
+
+        function renderProducts(productsToRender) {
+            $("#tblEmpBody").empty();
+            $.each(productsToRender, function (i, v) {
+                var serialNo = i + 1;
+                $("#tblEmpBody").append(
+                    "<tr>" +
+                    "<td class='text-center'>" + serialNo + "</td>" +
+                    "<td>" + v.employeeName + "</td>" +
+                    "<td>" + v.fatherName + "</td>" +
+                    "<td>" + v.motherName + "</td>" +
+                    "<td>" + v.username + "</td>" +
+                    "<td>" + v.email + "</td>" +
+                    "<td>" + v.mobileNo + "</td>" +
+                    "<td>" + v.dateOfBirth + "</td>" +
+                    "<td>" + v.gender + "</td>" +
+                    "<td>" + v.bloodGroup + "</td>" +
+                    "<td>" + v.userStatus + "</td>" +
+                    "<td>" + v.education + "</td>" +
+                    "<td>" +
+                    "<button class='btn btn-primary btnEditEmp' data-id='" + v.employeeId + "'><i class='bi bi-pencil'></i></button>" +
+                    "&nbsp;<button class='btn btn-danger' onclick='deleteEmployee(\"" + v.employeeId + "\")'><i class='bi bi-trash'></i></button>" +
+                    "</td>" +
+                    "</tr>"
+                );
+            });
+
+
+
+
+            // Attach click event for Edit buttons
+            $(".btnEditEmp").on("click", function () {
+                var employeeId = $(this).data("id");
+                editEmployee(employeeId);
+            });
+        }
+
+        function getProducts() {
+            var urlApi = "https://localhost:7133/api/Employees";
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                dataType: "JSON",
+                cache: false,
+            })
+                .done(function (result, request) {
+                    product = result;
+                    console.log(result);
+                    renderProducts(result);
+                });
+        }
+
+        // Edit portion
+        function editEmployee(id) {
+            console.log('Edit button clicked for employee ID:', id);
+            $.ajax({
+                url: 'https://localhost:7133/api/Employees/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    console.log('Edit Success:', result);
+
+                    if (result) {
+                        empId = result.employeeId;
+                        $("#txt0").val(result.employeeId);
+                        $("#txt1").val(result.employeeName);
+                        $("#txt2").val(result.fatherName);
+                        $("#txt3").val(result.motherName);
+                        $("#txt4").val(result.username);
+                        $("#txt5").val(result.email);
+                        $("#txt6").val(result.mobileNo);
+                        $("#txt7").val(result.dateOfBirth.split('T')[0]);
+                        $("#txt8").val(result.gender.toString());
+                        $("#txt9").val(result.bloodGroup.toString());
+                        $("#txt10").val(result.userStatus.toString());
+                        $("#txt11").val(result.education);
+                    }
+                    $("#btnCreateEmp").prop('disabled', false);
+                   // $("#btnUpdateEmp").prop('disabled', false);
+
+
+                },
+                error: function (xhr, status, error) {
+                    console.error('Edit Error:', xhr.responseText);
+                    alert('Error fetching employee details: ' + xhr.responseText);
+                }
+            });
+        }
+
+
+        //update portion
+
+        function updateEmployee(id) {
+            var formData = $('#employeeForm').serialize();
+
+            formData = JSON.parse('{"' + formData.replace(/&/g, '","').replace(/=/g, '":"') + '"}');
+            formData.DateOfBirth = new Date(formData.DateOfBirth);
+            formData.Gender = parseInt(formData.Gender);
+            formData.BloodGroup = parseInt(formData.BloodGroup);
+            formData.UserStatus = parseInt(formData.UserStatus);
+
+            $.ajax({
+                url: 'https://localhost:7133/api/Employees/' + id,
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(formData),
+                dataType: 'json',
+                success: function (result) {
+                    clearForm();
+                    getProducts();
+                    $("#btnCreateEmp").prop('disabled', false);
+                    $("#btnUpdateEmp").prop('disabled', true);
+                },
+                error: function (msg) {
+                    alert(msg);
+                }
+            });
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        // Delete portion
+        function deleteEmployee(id) {
+            $.ajax({
+                url: 'https://localhost:7133/api/Employees/' + id,
+                contentType: 'application/json',
+                type: 'DELETE',
+                success: function (result) {
+                    clearForm();
+                    getProducts();
+                    alert("Are you Sure you want to Delete this Employee?");
+                },
+                error: function (msg) {
+                    alert(msg);
+                }
+            });
+        }
+
+        // Clear form fields
+        function clearForm() {
+            $("#txt0").val('');
+            $('#txt1').val('');
+            $('#txt2').val('');
+            $('#txt3').val('');
+            $('#txt4').val('');
+            $('#txt5').val('');
+            $('#txt6').val('');
+            $('#txt7').val('');
+            $('#txt8').val('');
+            $('#txt9').val('');
+            $('#txt10').val('');
+            $('#txt11').val('');
+        }
+    </script>
+}

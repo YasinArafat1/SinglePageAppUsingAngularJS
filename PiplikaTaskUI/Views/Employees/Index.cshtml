@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PiplikaTaskUI.Models.DTO.EmployeeDTO>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="alert alert-info text-center">Employee List</h1>
+
+<div class="d-flex justify-content-end mb-2 mt-2">
+    <a asp-action="Create" asp-controller="Employees" class="btn btn-primary"><i class="fa fa-plus-square"></i> AddNewEmployee</a>
+</div>
+
+<table class="table table-bordered table-sm table-striped table-active text-center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MotherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Education)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MotherName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BloodGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Education)
+            </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Employees" asp-route-id="@item.EmployeeId" class="btn btn-primary"><i class="fa fa-edit"></i></a> 
+                    <a asp-action="Delete" asp-controller="Employees" asp-route-id="@item.EmployeeId" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

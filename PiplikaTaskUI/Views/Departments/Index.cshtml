@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<PiplikaTaskUI.Models.DTO.DepartmentDTO> 
+
+ <h2 class="alert alert-primary text-center">Department List</h2>
+<div class="d-flex justify-content-end">
+    <a class="btn btn-sec
+ondary mb-2 mt-2" asp-action="Create" asp-controller="Departments"><i class="fa fa-plus "></i>Add Department</a>
+</div>
+
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Department Name</th>
+            <th>Short Name</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@Html.DisplayFor(x=>item.DepartmentName)</td>
+                <td>@Html.DisplayFor(x=>item.ShortName)</td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Departments" asp-route-id="@item.DepartmentId" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                    <a asp-action="Delete" asp-controller="Departments" asp-route-id="@item.DepartmentId" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,86 @@
+﻿
+@{
+    //this for Department in office pattern
+
+    ViewBag.Title = "Department: Add/Edit Department";
+
+    var editDepartmentByIdUrl = "https://localhost:7133/api/Departments/";
+    var deleteDepartmentByIdUrl = "https://localhost:7133/api/Departments/";
+    var updateDepartmentByIdUrl = "https://localhost:7133/api/Departments/";
+
+    var getDepartmentByUrl = "https://localhost:7133/api/Departments";
+}
+
+
+<div ng-app="myApp" ng-controller="myCtrl1" ng-init="Init('@editDepartmentByIdUrl','@deleteDepartmentByIdUrl','@updateDepartmentByIdUrl','@getDepartmentByUrl')">
+
+    <h2 class="text-center display-4 alert bg-light">Department Management</h2>
+
+    <form id="employeeForm" class="form-horizontal">
+        <div class="form-group mb-2">
+            <label class="form-label col-3">Department Name<span>*</span></label>
+            <div class="col-6">
+                <input ng-model="formData.DepartmentName" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-label col-3">Short Name<span>*</span></label>
+            <div class="col-6">
+                <input ng-model="formData.ShortName" class="form-control" required />
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-8">
+                <button type="button" class="btn btn-primary" ng-click="createEmployee()" ng-disabled="btnEditEmpDisabled"><i class="fa fa-plus"></i> Save</button>
+                <button type="button" class="btn btn-secondary" ng-click="updateEmployee()" ng-disabled="btnUpdateEmpDisabled"><i class="fa fa-pencil"></i> Update</button>
+               
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-secondary" ng-click="clearform()" ng-disabled="btnRefreshEmpDisabled"><i class="fa fa-refresh"></i> Refresh</button>
+            </div>
+        </div>
+    </form>
+    <br />
+    <br />
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-sm text-center">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Department Name</th>
+                    <th>Short Name</th>
+                </tr>
+            </thead>
+            <tbody id="tblEmpBody">
+                <tr ng-repeat="item in product">
+                    <td class='text-center'>{{$index + 1}}</td>
+                    <td>{{item.departmentName}}</td>
+                    <td>{{item.shortName}}</td>
+                    <td>
+                        
+
+                        <button class='btn btn-primary' ng-click="editEmployee(item.departmentId)">
+                            <i class='fa fa-pencil'></i> Edit
+                        </button>
+                        <button class='btn btn-danger' ng-click="deleteEmployee(item.departmentId)">
+                            <i class='fa fa-trash'></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="~/officepattern/departmentofficepattern.js"></script>
+
+
+
+                        
+
+

@@ -1,0 +1,205 @@
+﻿
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <h2 class="text-center display-4 alert bg-light">Employee Management</h2>
+
+    <form id="employeeForm" class="form-horizontal">
+
+        <div class="row p-3">
+
+            <div class="col-6">
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Employee Name<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.EmployeeName" class="form-control" id="txt1">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.EmployeeName"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Father Name<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.FatherName" class="form-control" id="txt2">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.FatherName"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Mother Name<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.MotherName" class="form-control" id="txt3">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.MotherName"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">User Name<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.Username" class="form-control" id="txt4">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.Username"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Email<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.Email" class="form-control" id="txt5">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.Email"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Mobile NO<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.MobileNo" class="form-control" id="txt6">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.MobileNo"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-6 ">
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">DateOfBirth<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.DateOfBirth" class="form-control" type="date" id="txt7">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.DateOfBirth"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Gender<span>*</span></label>
+                    <div class="col-8">
+                        <select ng-model="formData.Gender" class="form-control" id="txt8">
+                            <option value="">--Select--</option>
+                            <option value="0">Male</option>
+                            <option value="1">Female</option>
+                            <option value="2">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.Gender"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Blood Group<span>*</span></label>
+                    <div class="col-8">
+                        <select ng-model="formData.BloodGroup" class="form-control" id="txt9">
+                            <option value="">--Select--</option>
+                            <option value="0">A+</option>
+                            <option value="1">A-</option>
+                            <option value="2">B+</option>
+                           
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.BloodGroup"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">User Status<span>*</span></label>
+                    <div class="col-8">
+                        <select ng-model="formData.UserStatus" class="form-control" id="txt10">
+                            <option value="">--Select--</option>
+                            <option value="0">Active</option>
+                            <option value="1">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.UserStatus"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <label class="col-form-label col-3">Education<span>*</span></label>
+                    <div class="col-8">
+                        <input ng-model="formData.Education" class="form-control" id="txt6">
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger" ng-bind="validationErrors.Education"></span>
+                    </div>
+                </div>
+
+           
+
+        </div>
+        </div>
+        
+            <div>
+                <button type="button" class="btn btn-primary" ng-click="createEmployee()" ng-disabled="btnEditEmpDisabled"><i class="fa fa-plus"></i> Create</button>
+                <button type="button" class="btn btn-secondary" ng-click="updateEmployee()" ng-disabled="btnUpdateEmpDisabled"><i class="fa fa-pencil"></i> Update</button>
+            </div>
+            <br />
+            <br />
+    </form>
+    <br />
+    <br />
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-sm text-center">
+            <thead>
+                <tr>
+                    <th>SL</th>
+                    <th>Employee Name</th>
+                    <th>Father Name</th>
+                    <th>Mother Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Mobile No</th>
+                    <th>DoB</th>
+                    <th>Gender</th>
+                    <th>BloodGroup</th>
+                    <th>UserStatus</th>
+                    <th>Education</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tblEmpBody">
+                <tr ng-repeat="item in product">
+                    <td class='text-center'>{{$index + 1}}</td>
+                    <td>{{item.employeeName}}</td>
+                    <td>{{item.fatherName}}</td>
+                    <td>{{item.motherName}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.mobileNo}}</td>
+                    <td>{{item.dateOfBirth | date:"mediumDate"}}</td>
+                    <td>{{ getGenderString(item.gender)}}</td>
+                    <td>{{ getBloodGroupString(item.bloodGroup) }}</td>
+                    <td>{{ getUserStatusString(item.userStatus) }}</td>
+                    <td>{{item.education}}</td>
+                    <td>
+                        <button class='btn btn-primary' ng-click="editEmployee(item.employeeId)">
+                            <i class='fa fa-pencil'></i> 
+                        </button>
+                        <button class='btn btn-danger' ng-click="deleteEmployee(item.employeeId)">
+                            <i class='fa fa-trash'></i> 
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="~/emp.js"></script>
+
+
